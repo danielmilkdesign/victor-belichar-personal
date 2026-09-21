@@ -606,22 +606,21 @@ function Index() {
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[
-            ["@mdclinic", "Clínica médica e estética"],
-            ["@dramaely.dangelo", "Médica"],
-            ["@dra.mayana.dangelo", "Médica"],
-            
-          ].map(([h, d]) => (
+            { handle: "@mdclinic", desc: "Clínica médica e estética", url: "https://www.instagram.com/mdclinicamanaus_/" },
+            { handle: "@dramaely.dangelo", desc: "Médica", url: "https://www.instagram.com/dramaelydangelo/" },
+            { handle: "@dra.mayana.dangelo", desc: "Médica", url: "https://www.instagram.com/dramayanadangelo/" },
+          ].map((item) => (
             <a
-              key={h}
-              href={`https://instagram.com/${h.replace("@", "")}`}
+              key={item.handle}
+              href={item.url}
               target="_blank"
               rel="noopener noreferrer"
               className="group p-6 rounded-xl bg-card border border-border hover:border-brand-red transition flex items-start gap-4"
             >
               <Instagram className="w-6 h-6 text-brand-red shrink-0 mt-1" />
               <div>
-                <p className="font-bold group-hover:text-brand-red transition">{h}</p>
-                <p className="text-sm text-muted-foreground mt-1">{d}</p>
+                <p className="font-bold group-hover:text-brand-red transition">{item.handle}</p>
+                <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
               </div>
             </a>
           ))}
