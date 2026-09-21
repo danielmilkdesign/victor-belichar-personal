@@ -1,0 +1,23 @@
+==========================================================
+📸 PASTA PARA FOTOS DOS ALUNOS (ANTES & DEPOIS)
+==========================================================
+
+Para que as fotos apareçam no site, basta salvar suas fotos
+aqui dentro desta pasta com os nomes abaixo:
+
+--- TRANSFORMAÇÃO 1 ---
+• Foto de Antes:   aluno-1-antes.jpg  (ou .png / .webp)
+• Foto de Depois:  aluno-1-depois.jpg (ou .png / .webp)
+
+--- TRANSFORMAÇÃO 2 ---
+• Foto de Antes:   aluno-2-antes.jpg  (ou .png / .webp)
+• Foto de Depois:  aluno-2-depois.jpg (ou .png / .webp)
+
+--- TRANSFORMAÇÃO 3 ---
+• Foto de Antes:   aluno-3-antes.jpg  (ou .png / .webp)
+• Foto de Depois:  aluno-3-depois.jpg (ou .png / .webp)
+
+DICAS:
+1. Você pode usar imagens no formato .jpg, .jpeg, .png ou .webp.
+2. Assim que você colar as fotos aqui, basta recarregar a página no navegador.
+==========================================================
