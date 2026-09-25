@@ -531,8 +531,8 @@ function Index() {
               id: 1,
               title: "Transformação 1",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/1.png",
-              depois: "/fotos-alunos/2.png",
+              antes: "/fotos-alunos/aluno-5-antes.png",
+              depois: "/fotos-alunos/aluno-5-depois.png",
             },
             {
               id: 2,
@@ -559,8 +559,8 @@ function Index() {
               id: 5,
               title: "Transformação 5",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/aluno-5-antes.png",
-              depois: "/fotos-alunos/aluno-5-depois.png",
+              antes: "/fotos-alunos/1.png",
+              depois: "/fotos-alunos/2.png",
             },
           ].map((item) => (
             <div
