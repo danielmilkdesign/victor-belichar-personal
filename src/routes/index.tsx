@@ -559,26 +559,19 @@ function Index() {
               id: 5,
               title: "Transformação 5",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/aluno-5-antes.png",
-              depois: "/fotos-alunos/aluno-5-depois.png",
+              antes: "/fotos-alunos/1.png",
+              depois: "/fotos-alunos/2.png",
             },
             {
               id: 6,
               title: "Transformação 6",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/1.png",
-              depois: "/fotos-alunos/2.png",
-            },
-            {
-              id: 7,
-              title: "Transformação 7",
-              subtitle: "Evolução com a metodologia Vibe Training.",
               antes: "/fotos-alunos/aluno-7-antes.png",
               depois: "/fotos-alunos/aluno-7-depois.png",
             },
             {
-              id: 8,
-              title: "Transformação 8",
+              id: 7,
+              title: "Transformação 7",
               subtitle: "Evolução com a metodologia Vibe Training.",
               antes: "/fotos-alunos/aluno-8-antes.png",
               depois: "/fotos-alunos/aluno-8-depois.png",
@@ -586,7 +579,9 @@ function Index() {
           ].map((item) => (
             <div
               key={item.id}
-              className="rounded-xl border border-border bg-card overflow-hidden hover:border-brand-red transition"
+              className={`rounded-xl border border-border bg-card overflow-hidden hover:border-brand-red transition ${
+                item.id === 7 ? "md:col-span-2 md:max-w-[490px] md:mx-auto w-full" : ""
+              }`}
             >
               <div className="grid grid-cols-2">
                 <FotoTransformacao
