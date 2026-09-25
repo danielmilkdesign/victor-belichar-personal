@@ -396,7 +396,7 @@ function Index() {
                   <tbody className="text-foreground">
                     {[
                       ["1x semana", "R$ 1.370", "—"],
-                      ["2x semana", "R$ 1.570", "R$ 2.940"],
+                      ["2x semana", "R$ 1.670", "R$ 2.940"],
                       ["3x semana", "R$ 1.970", "R$ 3.340"],
                       ["4x semana", "R$ 2.590", "R$ 3.960"],
                       ["5x semana", "R$ 3.170", "R$ 4.540"],
