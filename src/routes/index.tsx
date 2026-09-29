@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/Navbar";
 import { DiagonalLines } from "@/components/DiagonalLines";
@@ -82,15 +82,27 @@ function FotoTransformacao({
   label: "ANTES" | "DEPOIS";
   alt: string;
 }) {
+  const [currentSrc, setCurrentSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setCurrentSrc(src);
+    setHasError(false);
+  }, [src]);
 
   return (
     <div className="relative aspect-[19/30] bg-neutral-950 border-r border-border last:border-r-0 overflow-hidden flex flex-col items-center justify-center text-center">
       {!hasError ? (
         <img
-          src={src}
+          src={currentSrc}
           alt={alt}
-          onError={() => setHasError(true)}
+          onError={() => {
+            if (currentSrc.endsWith(".webp")) {
+              setCurrentSrc(currentSrc.replace(/\.webp$/, ".png"));
+            } else {
+              setHasError(true);
+            }
+          }}
           loading="lazy"
           className="h-full w-full object-cover"
         />
@@ -531,57 +543,57 @@ function Index() {
               id: 1,
               title: "Transformação 1",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/aluno-5-antes.png",
-              depois: "/fotos-alunos/aluno-5-depois.png",
+              antes: "/fotos-alunos/aluno-5-antes.webp",
+              depois: "/fotos-alunos/aluno-5-depois.webp",
             },
             {
               id: 2,
               title: "Transformação 2",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/3.png",
-              depois: "/fotos-alunos/4.png",
+              antes: "/fotos-alunos/3.webp",
+              depois: "/fotos-alunos/4.webp",
             },
             {
               id: 3,
               title: "Transformação 3",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/5.png",
-              depois: "/fotos-alunos/6.png",
+              antes: "/fotos-alunos/5.webp",
+              depois: "/fotos-alunos/6.webp",
             },
             {
               id: 4,
               title: "Transformação 4",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/7.png",
-              depois: "/fotos-alunos/8.png",
+              antes: "/fotos-alunos/7.webp",
+              depois: "/fotos-alunos/8.webp",
             },
             {
               id: 5,
               title: "Transformação 5",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/1.png",
-              depois: "/fotos-alunos/2.png",
+              antes: "/fotos-alunos/1.webp",
+              depois: "/fotos-alunos/2.webp",
             },
             {
               id: 6,
               title: "Transformação 6",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/aluno-6-antes.png",
-              depois: "/fotos-alunos/aluno-6-depois.png",
+              antes: "/fotos-alunos/aluno-6-antes.webp",
+              depois: "/fotos-alunos/aluno-6-depois.webp",
             },
             {
               id: 7,
               title: "Transformação 7",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/aluno-7-antes.png",
-              depois: "/fotos-alunos/aluno-7-depois.png",
+              antes: "/fotos-alunos/aluno-7-antes.webp",
+              depois: "/fotos-alunos/aluno-7-depois.webp",
             },
             {
               id: 8,
               title: "Transformação 8",
               subtitle: "Evolução com a metodologia Vibe Training.",
-              antes: "/fotos-alunos/aluno-8-antes.png",
-              depois: "/fotos-alunos/aluno-8-depois.png",
+              antes: "/fotos-alunos/aluno-8-antes.webp",
+              depois: "/fotos-alunos/aluno-8-depois.webp",
             },
           ].map((item) => (
             <div
