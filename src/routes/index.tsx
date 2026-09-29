@@ -127,6 +127,7 @@ function FotoTransformacao({
 }
 
 function Index() {
+  const [selectedPlan, setSelectedPlan] = useState<"padrao" | "exclusivo">("padrao");
   return (
     <main id="top" className="bg-background text-foreground overflow-x-hidden">
       <Navbar />
@@ -387,86 +388,124 @@ function Index() {
             exclusividade no horário.
           </p>
 
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Plano Padrão */}
-            <div className="rounded-2xl border border-border bg-background p-8 md:p-10">
-              <h3 className="text-3xl md:text-4xl font-black italic text-brand-red">
-                Plano Padrão
-              </h3>
-              <p className="text-muted-foreground mt-1 mb-8">
-                Treinamento para 1 ou 2 pessoas no mesmo horário.
-              </p>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm md:text-base">
-                  <thead>
-                    <tr className="text-brand-red font-bold">
-                      <th className="py-3 pr-4">FREQUÊNCIA</th>
-                      <th className="py-3 pr-4">1 PESSOA</th>
-                      <th className="py-3 pr-4">2 PESSOAS</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-foreground">
-                    {[
-                      ["1x semana", "R$ 1.370", "—"],
-                      ["2x semana", "R$ 1.670", "R$ 2.940"],
-                      ["3x semana", "R$ 1.970", "R$ 3.340"],
-                      ["4x semana", "R$ 2.590", "R$ 3.960"],
-                      ["5x semana", "R$ 3.170", "R$ 4.540"],
-                    ].map((r) => (
-                      <tr key={r[0]} className="border-t border-border">
-                        <td className="py-4 pr-4 font-bold">{r[0]}</td>
-                        <td className="py-4 pr-4 font-black">{r[1]}</td>
-                        <td className="py-4 pr-4 font-black">{r[2]}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="mt-4 text-xs text-muted-foreground">
-                * 1x na semana é semi-presencial. Valores para 2 pessoas com
-                desconto em relação ao individual.
-              </p>
-            </div>
-
-            {/* Plano Exclusive */}
-            <div className="rounded-2xl border-2 border-brand-red bg-background p-8 md:p-10 shadow-red relative">
-              <span className="absolute -top-3 left-8 bg-brand-red text-primary-foreground text-xs font-bold tracking-widest px-3 py-1 rounded">
-                EXCLUSIVIDADE NO HORÁRIO
-              </span>
-              <h3 className="text-3xl md:text-4xl font-black italic text-brand-red">
-                Plano Exclusive
-              </h3>
-              <p className="text-muted-foreground mt-1 mb-8">
-                Treinamento para 1 pessoa com exclusividade no horário.
-              </p>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-sm md:text-base">
-                  <thead>
-                    <tr className="text-brand-red font-bold">
-                      <th className="py-3 pr-4">FREQUÊNCIA</th>
-                      <th className="py-3 pr-4">VALOR</th>
-                    </tr>
-                  </thead>
-                  <tbody className="text-foreground">
-                    {[
-                      ["1x semana", "—"],
-                      ["2x semana", "R$ 2.190"],
-                      ["3x semana", "R$ 2.990"],
-                      ["4x semana", "R$ 3.710"],
-                      ["5x semana", "R$ 4.350"],
-                    ].map((r) => (
-                      <tr key={r[0]} className="border-t border-border">
-                        <td className="py-4 pr-4 font-bold">{r[0]}</td>
-                        <td className="py-4 pr-4 font-black text-xl">{r[1]}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+          {/* Toggle de Planos */}
+          <div className="flex justify-center mb-10 md:mb-12">
+            <div
+              role="tablist"
+              aria-label="Selecionar plano de atendimento"
+              className="inline-flex items-center p-1 sm:p-1.5 rounded-full bg-neutral-950/80 border border-brand-red/40 backdrop-blur-md ring-1 ring-brand-red/20 shadow-[0_0_20px_-3px_oklch(0.58_0.22_25/0.35),inset_0_0_12px_-3px_oklch(0.58_0.22_25/0.2)]"
+            >
+              <button
+                type="button"
+                role="tab"
+                aria-selected={selectedPlan === "padrao"}
+                onClick={() => setSelectedPlan("padrao")}
+                className={`px-6 sm:px-8 py-2 sm:py-2.5 rounded-full font-bold text-sm sm:text-base transition-all duration-300 cursor-pointer ${
+                  selectedPlan === "padrao"
+                    ? "bg-brand-red text-white shadow-red"
+                    : "bg-transparent text-brand-red hover:text-white"
+                }`}
+              >
+                Padrão
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={selectedPlan === "exclusivo"}
+                onClick={() => setSelectedPlan("exclusivo")}
+                className={`px-6 sm:px-8 py-2 sm:py-2.5 rounded-full font-bold text-sm sm:text-base transition-all duration-300 cursor-pointer ${
+                  selectedPlan === "exclusivo"
+                    ? "bg-brand-red text-white shadow-red"
+                    : "bg-transparent text-brand-red hover:text-white"
+                }`}
+              >
+                Exclusivo
+              </button>
             </div>
           </div>
 
-          <ul className="mt-8 text-xs text-muted-foreground space-y-1">
+          <div className="max-w-2xl mx-auto w-full">
+            {selectedPlan === "padrao" ? (
+              /* Plano Padrão */
+              <div className="rounded-2xl border border-border bg-background p-8 md:p-10 transition-all duration-300 animate-in fade-in">
+                <h3 className="text-3xl md:text-4xl font-black italic text-brand-red">
+                  Plano Padrão
+                </h3>
+                <p className="text-muted-foreground mt-1 mb-8">
+                  Treinamento para 1 ou 2 pessoas no mesmo horário.
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm md:text-base">
+                    <thead>
+                      <tr className="text-brand-red font-bold">
+                        <th className="py-3 pr-4">FREQUÊNCIA</th>
+                        <th className="py-3 pr-4">1 PESSOA</th>
+                        <th className="py-3 pr-4">2 PESSOAS</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-foreground">
+                      {[
+                        ["1x semana", "R$ 1.370", "—"],
+                        ["2x semana", "R$ 1.670", "R$ 2.940"],
+                        ["3x semana", "R$ 1.970", "R$ 3.340"],
+                        ["4x semana", "R$ 2.590", "R$ 3.960"],
+                        ["5x semana", "R$ 3.170", "R$ 4.540"],
+                      ].map((r) => (
+                        <tr key={r[0]} className="border-t border-border">
+                          <td className="py-4 pr-4 font-bold">{r[0]}</td>
+                          <td className="py-4 pr-4 font-black">{r[1]}</td>
+                          <td className="py-4 pr-4 font-black">{r[2]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-4 text-xs text-muted-foreground">
+                  * 1x na semana é semi-presencial. Valores para 2 pessoas com
+                  desconto em relação ao individual.
+                </p>
+              </div>
+            ) : (
+              /* Plano Exclusive */
+              <div className="rounded-2xl border-2 border-brand-red bg-background p-8 md:p-10 shadow-red relative transition-all duration-300 animate-in fade-in">
+                <span className="absolute -top-3 left-8 bg-brand-red text-primary-foreground text-xs font-bold tracking-widest px-3 py-1 rounded">
+                  EXCLUSIVIDADE NO HORÁRIO
+                </span>
+                <h3 className="text-3xl md:text-4xl font-black italic text-brand-red">
+                  Plano Exclusive
+                </h3>
+                <p className="text-muted-foreground mt-1 mb-8">
+                  Treinamento para 1 pessoa com exclusividade no horário.
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-sm md:text-base">
+                    <thead>
+                      <tr className="text-brand-red font-bold">
+                        <th className="py-3 pr-4">FREQUÊNCIA</th>
+                        <th className="py-3 pr-4">VALOR</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-foreground">
+                      {[
+                        ["1x semana", "—"],
+                        ["2x semana", "R$ 2.190"],
+                        ["3x semana", "R$ 2.990"],
+                        ["4x semana", "R$ 3.710"],
+                        ["5x semana", "R$ 4.350"],
+                      ].map((r) => (
+                        <tr key={r[0]} className="border-t border-border">
+                          <td className="py-4 pr-4 font-bold">{r[0]}</td>
+                          <td className="py-4 pr-4 font-black text-xl">{r[1]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <ul className="mt-8 text-xs text-muted-foreground space-y-1 max-w-2xl mx-auto">
             <li>* Atendimento presencial nas academias Cagin Soberane e Cia Athletica Manauara.</li>
             <li>* Aula avulsa: R$ 200.</li>
             <li>* Não atendo aos sábados, domingos e feriados.</li>
