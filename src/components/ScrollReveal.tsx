@@ -1,31 +1,46 @@
 import { useEffect } from "react";
 
 /**
- * Applies a subtle fade-in-on-scroll effect to every <section> on the page.
+ * High-performance component-level scroll reveal engine.
+ * Inspired by modern fitness portfolio motion design.
  */
 export function ScrollReveal() {
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    if (reduce) {
+      document.querySelectorAll(".reveal").forEach((el) => {
+        el.classList.add("reveal-visible");
+        el.setAttribute("data-visible", "true");
+      });
+      return;
+    }
 
-    const targets = Array.from(
-      document.querySelectorAll<HTMLElement>("main section"),
-    );
-    targets.forEach((el) => el.classList.add("reveal"));
+    const targets = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+    if (!targets.length) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("reveal-visible");
+            entry.target.setAttribute("data-visible", "true");
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
     );
 
-    targets.forEach((el) => observer.observe(el));
+    targets.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("reveal-visible");
+        el.setAttribute("data-visible", "true");
+      } else {
+        observer.observe(el);
+      }
+    });
+
     return () => observer.disconnect();
   }, []);
 

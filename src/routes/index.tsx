@@ -179,13 +179,13 @@ function Index() {
             <div className="fade-up fade-up-4 mt-8 md:mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
               <a
                 href="#planos"
-                className="inline-flex items-center justify-center bg-brand-red text-primary-foreground px-6 py-3.5 sm:px-7 sm:py-4 rounded-md font-bold tracking-wide shadow-red hover:opacity-90 transition"
+                className="inline-flex items-center justify-center bg-brand-red text-primary-foreground px-6 py-3.5 sm:px-7 sm:py-4 rounded-md font-bold tracking-wide shadow-red hover:opacity-90 hover:scale-[1.02] transition pulse-glow"
               >
                 VER PLANOS
               </a>
               <a
                 href="#contato"
-                className="inline-flex items-center justify-center border border-white text-white px-6 py-3.5 sm:px-7 sm:py-4 rounded-md font-bold tracking-wide hover:border-brand-red hover:text-brand-red transition"
+                className="inline-flex items-center justify-center border border-white text-white px-6 py-3.5 sm:px-7 sm:py-4 rounded-md font-bold tracking-wide hover:border-brand-red hover:text-brand-red hover:scale-[1.02] transition"
               >
                 AGENDE SEU TREINO
               </a>
@@ -200,18 +200,18 @@ function Index() {
       {/* SOBRE */}
       <Section id="sobre">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative">
+          <div className="relative reveal reveal-left">
             <div className="absolute -inset-2 gradient-red rounded-lg blur-2xl opacity-20" />
             <img
               src={victorPortrait}
               alt="Victor Belichar"
               loading="lazy"
-              className="relative rounded-lg w-full h-auto object-contain"
+              className="relative rounded-lg w-full h-auto object-contain hover:scale-[1.02] transition-transform duration-500"
               width={938}
               height={1311}
             />
           </div>
-          <div>
+          <div className="reveal reveal-right">
             <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
               SOBRE
             </p>
@@ -228,22 +228,26 @@ function Index() {
                 "Praticante de Musculação",
                 "Atleta amador Men's Physique IFBB",
                 "Corredor amador",
-              ].map((t) => (
-                <li key={t} className="flex gap-3">
+              ].map((t, idx) => (
+                <li
+                  key={t}
+                  className="flex gap-3 reveal reveal-up hover:translate-x-1 transition-transform"
+                  style={{ transitionDelay: `${idx * 60}ms` }}
+                >
                   <CheckCircle2 className="w-5 h-5 text-brand-red shrink-0 mt-0.5" />
                   <span>{t}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="mt-10 p-6 border-l-4 border-brand-red bg-card rounded-r-lg">
+            <div className="mt-10 p-6 border-l-4 border-brand-red bg-card rounded-r-lg reveal reveal-up delay-200 hover-lift">
               <h3 className="text-xl font-bold mb-2">Minha missão</h3>
               <p className="text-muted-foreground">
                 Transformar sua vida através da atividade física, tirar você do
                 sedentarismo e melhorar seu físico e sua autoestima.
               </p>
             </div>
-            <div className="mt-6 space-y-1 text-sm tracking-widest text-foreground/80">
+            <div className="mt-6 space-y-1 text-sm tracking-widest text-foreground/80 reveal reveal-up delay-300">
               <p>ATENDIMENTO PRESENCIAL · ACADEMIA CAGIN SOBERANE E CIA ATHLETICA MANAUARA</p>
               <p>ATENDIMENTO ONLINE ATRAVÉS DE CONSULTORIA PERSONALIZADA</p>
             </div>
@@ -257,26 +261,28 @@ function Index() {
           <img src={gym} alt="" className="w-full h-full object-cover opacity-15" loading="lazy" />
         </div>
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
-            METODOLOGIA
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black mb-4 max-w-3xl">
-            A metodologia <span className="italic-accent">Vibe Training</span>{" "}
-            ajuda quem busca qualidade de vida, um corpo forte e bonito e mais
-            performance física no esporte.
-          </h2>
+          <div className="reveal reveal-up">
+            <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
+              METODOLOGIA
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black mb-4 max-w-3xl">
+              A metodologia <span className="italic-accent">Vibe Training</span>{" "}
+              ajuda quem busca qualidade de vida, um corpo forte e bonito e mais
+              performance física no esporte.
+            </h2>
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-14">
             {[
-              { icon: ClipboardList, title: "Anamnese para conhecer o aluno" },
-              { icon: ScanLine, title: "Avaliação física por bioimpedância ou por foto" },
-              { icon: Dumbbell, title: "Montagem de treino voltada para objetivo do aluno" },
-              { icon: Salad, title: "Orientações para melhorar alimentação" },
+              { icon: ClipboardList, title: "Anamnese para conhecer o aluno", delay: "delay-75" },
+              { icon: ScanLine, title: "Avaliação física por bioimpedância ou por foto", delay: "delay-150" },
+              { icon: Dumbbell, title: "Montagem de treino voltada para objetivo do aluno", delay: "delay-225" },
+              { icon: Salad, title: "Orientações para melhorar alimentação", delay: "delay-300" },
             ].map((it) => (
               <div
                 key={it.title}
-                className="group relative p-8 rounded-xl bg-background border border-border hover:border-brand-red transition shadow-card-soft"
+                className={`group relative p-8 rounded-xl bg-background border border-border hover:border-brand-red transition shadow-card-soft reveal reveal-up hover-lift ${it.delay}`}
               >
-                <div className="w-14 h-14 rounded-full gradient-red flex items-center justify-center mb-5 shadow-red">
+                <div className="w-14 h-14 rounded-full gradient-red flex items-center justify-center mb-5 shadow-red group-hover:scale-110 transition-transform duration-300">
                   <it.icon className="w-7 h-7 text-primary-foreground" />
                 </div>
                 <h3 className="text-lg font-bold leading-snug">{it.title}</h3>
@@ -288,12 +294,14 @@ function Index() {
 
       {/* SERVIÇOS */}
       <Section id="servicos">
-        <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
-          SERVIÇOS
-        </p>
-        <h2 className="text-4xl md:text-5xl font-black mb-12">
-          Serviços <span className="italic-accent">Oferecidos</span>
-        </h2>
+        <div className="reveal reveal-up">
+          <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
+            SERVIÇOS
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black mb-12">
+            Serviços <span className="italic-accent">Oferecidos</span>
+          </h2>
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             {
@@ -302,6 +310,7 @@ function Index() {
               tag: "Presencial",
               desc: "Treino personalizado com acompanhamento direto nas academias Cagin Soberane e Cia Athletica Manauara.",
               img: servicePresencial,
+              delay: "delay-75",
             },
             {
               icon: Flame,
@@ -309,6 +318,7 @@ function Index() {
               tag: "Muay Thai",
               desc: "Atendimento presencial para atletas, amadores e para quem quer aprender uma luta.",
               img: muaythai,
+              delay: "delay-150",
             },
             {
               icon: Wifi,
@@ -316,6 +326,7 @@ function Index() {
               tag: "Consultoria",
               desc: "Treino personalizado para o seu objetivo, com suporte via aplicativo e WhatsApp.",
               img: serviceOnline,
+              delay: "delay-225",
             },
             {
               icon: CheckCircle2,
@@ -323,22 +334,25 @@ function Index() {
               tag: "Experimental",
               desc: "Aula avulsa ou experimental para você conhecer a metodologia. R$ 200.",
               img: gym,
+              delay: "delay-300",
             },
           ].map((s) => (
             <div
               key={s.title}
-              className="relative overflow-hidden rounded-xl border border-border bg-card hover:border-brand-red transition group"
+              className={`relative overflow-hidden rounded-xl border border-border bg-card hover:border-brand-red transition group reveal reveal-up hover-lift ${s.delay}`}
             >
               {s.img && (
-                <img
-                  src={s.img}
-                  alt=""
-                  loading="lazy"
-                  className="w-full h-44 object-cover opacity-70 group-hover:opacity-90 transition"
-                />
+                <div className="overflow-hidden h-44">
+                  <img
+                    src={s.img}
+                    alt=""
+                    loading="lazy"
+                    className="w-full h-full object-cover opacity-70 group-hover:opacity-90 img-zoom"
+                  />
+                </div>
               )}
               <div className="p-7">
-                <s.icon className="w-8 h-8 text-brand-red mb-4" />
+                <s.icon className="w-8 h-8 text-brand-red mb-4 group-hover:scale-110 transition-transform duration-300" />
                 <p className="text-xs tracking-widest text-brand-red font-semibold mb-1">
                   {s.tag}
                 </p>
@@ -351,7 +365,7 @@ function Index() {
 
         {/* Entregas */}
         <div className="mt-20 grid md:grid-cols-2 gap-10 items-center">
-          <h3 className="text-4xl md:text-6xl font-black">
+          <h3 className="text-4xl md:text-6xl font-black reveal reveal-left">
             Meus serviços visam{"\n"}
             <span className="italic-accent">lhe entregar:</span>
           </h3>
@@ -362,8 +376,12 @@ function Index() {
               "Treino técnico, eficiente e seguro",
               "Acompanhamento 360° da sua evolução física e estética",
               "Transformação de hábitos, melhora da qualidade de vida e bem-estar",
-            ].map((t) => (
-              <li key={t} className="flex gap-4 p-4 bg-card rounded-lg border border-border">
+            ].map((t, idx) => (
+              <li
+                key={t}
+                className="flex gap-4 p-4 bg-card rounded-lg border border-border reveal reveal-up hover:border-brand-red/60 hover:translate-x-1.5 transition-all duration-300"
+                style={{ transitionDelay: `${idx * 80}ms` }}
+              >
                 <CheckCircle2 className="w-6 h-6 text-brand-red shrink-0" />
                 <span className="text-foreground/90 text-2xl">{t}</span>
               </li>
@@ -376,20 +394,22 @@ function Index() {
       <section id="planos" className="relative py-24 md:py-32 bg-card/30">
         <DiagonalLines side="right" />
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
-            INVESTIMENTO
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
-            Planos de <span className="italic-accent">Atendimento Presencial</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mb-14">
+          <div className="reveal reveal-up">
+            <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
+              INVESTIMENTO
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">
+              Planos de <span className="italic-accent">Atendimento Presencial</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mb-14">
             São 2 planos de atendimento presencial: <strong className="text-foreground">Padrão</strong> e{" "}
             <strong className="text-foreground">Exclusive</strong>. A diferença entre eles é a
             exclusividade no horário.
-          </p>
+            </p>
+          </div>
 
           {/* Toggle de Planos */}
-          <div className="flex justify-center mb-10 md:mb-12">
+          <div className="flex justify-center mb-10 md:mb-12 reveal reveal-scale delay-150">
             <div
               role="tablist"
               aria-label="Selecionar plano de atendimento"
@@ -424,7 +444,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="max-w-2xl mx-auto w-full">
+          <div className="max-w-2xl mx-auto w-full reveal reveal-up delay-250">
             {selectedPlan === "padrao" ? (
               /* Plano Padrão */
               <div className="rounded-2xl border border-border bg-background p-8 md:p-10 transition-all duration-300 animate-in fade-in">
@@ -505,7 +525,7 @@ function Index() {
             )}
           </div>
 
-          <ul className="mt-8 text-xs text-muted-foreground space-y-1 max-w-2xl mx-auto">
+          <ul className="mt-8 text-xs text-muted-foreground space-y-1 max-w-2xl mx-auto reveal reveal-up delay-350">
             <li>* Atendimento presencial nas academias Cagin Soberane e Cia Athletica Manauara.</li>
             <li>* Aula avulsa: R$ 200.</li>
             <li>* Não atendo aos sábados, domingos e feriados.</li>
@@ -518,16 +538,18 @@ function Index() {
       {/* OUTROS SERVIÇOS */}
       <section className="relative py-24 md:py-32 bg-card/40">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
-            SERVIÇOS ONLINE
-          </p>
-          <h2 className="text-4xl md:text-5xl font-black mb-14">
-            Serviços <span className="italic-accent">online</span>
-          </h2>
+          <div className="reveal reveal-up">
+            <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
+              SERVIÇOS ONLINE
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black mb-14">
+              Serviços <span className="italic-accent">online</span>
+            </h2>
+          </div>
 
           <div className="grid lg:grid-cols-2 gap-6">
             {/* Protocolos de treino */}
-            <div className="rounded-xl border border-border bg-background p-8 flex flex-col">
+            <div className="rounded-xl border border-border bg-background p-8 flex flex-col reveal reveal-up hover-lift delay-100">
               <h3 className="text-2xl font-bold mb-1">Protocolos de Treino</h3>
               <p className="text-sm text-muted-foreground mb-6">
                 Protocolos de treino de musculação com recorrência mensal.
@@ -546,7 +568,7 @@ function Index() {
             </div>
 
             {/* Consultoria Online Personalizada */}
-            <div className="rounded-xl border-2 border-brand-red bg-background p-8 flex flex-col shadow-red">
+            <div className="rounded-xl border-2 border-brand-red bg-background p-8 flex flex-col shadow-red reveal reveal-up hover-lift delay-200">
               <h3 className="text-2xl font-bold mb-1">Consultoria Online Personalizada</h3>
               <p className="text-sm text-muted-foreground mb-6">
                 Acompanhamento completo e personalizado para o objetivo do aluno.
@@ -565,17 +587,19 @@ function Index() {
 
       {/* RESULTADOS */}
       <Section id="resultados">
-        <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
-          RESULTADOS
-        </p>
-        <h2 className="text-4xl md:text-5xl font-black mb-4">
-          Antes <span className="italic-accent">&amp; depois</span>
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mb-12">
-          Transformações reais de alunos acompanhados com a metodologia Vibe
-          Training. Resultados construídos com constância e acompanhamento
-          personalizado.
-        </p>
+        <div className="reveal reveal-up">
+          <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
+            RESULTADOS
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black mb-4">
+            Antes <span className="italic-accent">&amp; depois</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mb-12">
+            Transformações reais de alunos acompanhados com a metodologia Vibe
+            Training. Resultados construídos com constância e acompanhamento
+            personalizado.
+          </p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {[
             {
@@ -637,7 +661,8 @@ function Index() {
           ].map((item) => (
             <div
               key={item.id}
-              className="rounded-xl border border-border bg-card overflow-hidden hover:border-brand-red transition"
+              className="rounded-xl border border-border bg-card overflow-hidden hover:border-brand-red transition reveal reveal-up hover-lift"
+              style={{ transitionDelay: `${(item.id % 2) * 150}ms` }}
             >
               <div className="grid grid-cols-2">
                 <FotoTransformacao
@@ -664,28 +689,30 @@ function Index() {
 
       {/* PARCEIROS */}
       <Section>
-        <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
-          PARCERIAS
-        </p>
-        <h2 className="text-4xl md:text-5xl font-black mb-4">
-          Rede de <span className="italic-accent">parceiros</span>
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mb-12">
-          Profissionais selecionados para potencializar a performance dos meus
-          alunos presenciais e online — com condições especiais por indicação.
-        </p>
+        <div className="reveal reveal-up">
+          <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
+            PARCERIAS
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black mb-4">
+            Rede de <span className="italic-accent">parceiros</span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mb-12">
+            Profissionais selecionados para potencializar a performance dos meus
+            alunos presenciais e online — com condições especiais por indicação.
+          </p>
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {[
-            { handle: "@mdclinic", desc: "Clínica médica e estética", url: "https://www.instagram.com/mdclinicamanaus_/" },
-            { handle: "@dramaely.dangelo", desc: "Médica", url: "https://www.instagram.com/dramaelydangelo/" },
-            { handle: "@dra.mayana.dangelo", desc: "Médica", url: "https://www.instagram.com/dramayanadangelo/" },
+            { handle: "@mdclinic", desc: "Clínica médica e estética", url: "https://www.instagram.com/mdclinicamanaus_/", delay: "delay-100" },
+            { handle: "@dramaely.dangelo", desc: "Médica", url: "https://www.instagram.com/dramaelydangelo/", delay: "delay-200" },
+            { handle: "@dra.mayana.dangelo", desc: "Médica", url: "https://www.instagram.com/dramayanadangelo/", delay: "delay-300" },
           ].map((item) => (
             <a
               key={item.handle}
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-6 rounded-xl bg-card border border-border hover:border-brand-red transition flex items-start gap-4"
+              className={`group p-6 rounded-xl bg-card border border-border hover:border-brand-red transition flex items-start gap-4 reveal reveal-up hover-lift ${item.delay}`}
             >
               <Instagram className="w-6 h-6 text-brand-red shrink-0 mt-1" />
               <div>
@@ -700,17 +727,19 @@ function Index() {
       {/* REGRAS DE ATENDIMENTO */}
       <section id="regras" className="relative py-24 md:py-32 bg-card/40">
         <div className="max-w-7xl mx-auto px-6">
-          <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
-            ATENDIMENTO
-          </p>
-          <h2 className="text-4xl md:text-6xl font-black mb-6">
-            Regras de <span className="italic-accent">atendimento</span>
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mb-12">
-            Para garantir um atendimento técnico, ético e organizado, o
-            treinamento segue algumas regras. Em caso de dúvidas, fale comigo
-            pelo WhatsApp.
-          </p>
+          <div className="reveal reveal-up">
+            <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-3">
+              ATENDIMENTO
+            </p>
+            <h2 className="text-4xl md:text-6xl font-black mb-6">
+              Regras de <span className="italic-accent">atendimento</span>
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mb-12">
+              Para garantir um atendimento técnico, ético e organizado, o
+              treinamento segue algumas regras. Em caso de dúvidas, fale comigo
+              pelo WhatsApp.
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {[
@@ -753,8 +782,8 @@ function Index() {
                   "Respeito, pontualidade e comprometimento são essenciais.",
                 ],
               },
-            ].map((g) => (
-              <div key={g.title} className="p-7 rounded-xl bg-card border border-border">
+            ].map((g, idx) => (
+              <div key={g.title} className="p-7 rounded-xl bg-card border border-border reveal reveal-up hover-lift" style={{ transitionDelay: `${(idx + 1) * 100}ms` }}>
                 <h3 className="text-xl md:text-2xl font-bold mb-5">{g.title}</h3>
                 <ul className="space-y-3 text-sm text-muted-foreground">
                   {g.items.map((it) => (
@@ -768,7 +797,7 @@ function Index() {
             ))}
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10 reveal reveal-up delay-300">
             <a
               href="/regras"
               className="inline-flex items-center gap-2 border border-border px-7 py-4 rounded-md font-bold tracking-wide hover:border-brand-red hover:text-brand-red transition"
@@ -786,22 +815,24 @@ function Index() {
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
         </div>
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-4">
-            VAMOS COMEÇAR
-          </p>
-          <h2 className="text-5xl md:text-7xl font-black leading-[0.95] mb-6">
-            Dê o primeiro passo<br />
-            <span className="italic-accent">para sua mudança.</span>
-          </h2>
-          <p className="text-xl text-muted-foreground mb-10">
-            VAMOS TREINAR JUNTOS!
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="reveal reveal-up">
+            <p className="text-xs tracking-[0.4em] text-brand-red font-bold mb-4">
+              VAMOS COMEÇAR
+            </p>
+            <h2 className="text-5xl md:text-7xl font-black leading-[0.95] mb-6">
+              Dê o primeiro passo<br />
+              <span className="italic-accent">para sua mudança.</span>
+            </h2>
+            <p className="text-xl text-muted-foreground mb-10">
+              VAMOS TREINAR JUNTOS!
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-4 reveal reveal-scale delay-150">
             <a
               href="https://wa.link/or6eyw"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-brand-red text-primary-foreground px-8 py-4 rounded-md font-bold tracking-wide shadow-red hover:opacity-90 transition"
+              className="inline-flex items-center gap-2 bg-brand-red text-primary-foreground px-8 py-4 rounded-md font-bold tracking-wide shadow-red hover:opacity-90 hover:scale-[1.02] transition pulse-glow"
             >
               <Phone className="w-5 h-5" /> WHATSAPP
             </a>
@@ -809,14 +840,14 @@ function Index() {
               href="https://www.instagram.com/treinadorvictorbelichar/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-border px-8 py-4 rounded-md font-bold tracking-wide hover:border-brand-red hover:text-brand-red transition"
+              className="inline-flex items-center gap-2 border border-border px-8 py-4 rounded-md font-bold tracking-wide hover:border-brand-red hover:text-brand-red hover:scale-[1.02] transition"
             >
               <Instagram className="w-5 h-5" /> INSTAGRAM
             </a>
           </div>
 
           <div className="mt-16 grid sm:grid-cols-2 gap-4 text-left max-w-2xl mx-auto">
-            <div className="flex gap-3 p-5 rounded-lg bg-card border border-border">
+            <div className="flex gap-3 p-5 rounded-lg bg-card border border-border reveal reveal-up hover-lift delay-200">
               <MapPin className="w-5 h-5 text-brand-red shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs text-muted-foreground">Atendimento</p>
@@ -824,7 +855,7 @@ function Index() {
                 <p className="font-semibold">Compania Athelica Manauara Shopping · Manaus/AM</p>
               </div>
             </div>
-            <div className="flex gap-3 p-5 rounded-lg bg-card border border-border">
+            <div className="flex gap-3 p-5 rounded-lg bg-card border border-border reveal reveal-up hover-lift delay-300">
               <Mail className="w-5 h-5 text-brand-red shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs text-muted-foreground">Registro</p>
